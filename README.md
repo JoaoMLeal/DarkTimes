@@ -1,6 +1,7 @@
-# Final DDJ Project
+# Dark Times
+### DDJ Project
 
-## Dark Times
+## Gameplay
  - Puzzle/Action
  - Challenge #4 : Gun that shoots through time
  - After jumping forward, time goes back to the start
@@ -8,6 +9,5 @@
 
 ## TODO
  - Level design
- - Curved trajectory instead of line
- - Fix ray collision
+ - Enemies
  - Organize code
