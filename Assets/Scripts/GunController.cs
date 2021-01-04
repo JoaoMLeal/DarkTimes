@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -27,7 +28,6 @@ public class GunController : MonoBehaviour
     private float speed;
     private int positions;
 
-
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -37,49 +37,12 @@ public class GunController : MonoBehaviour
         speed = 3;
     }
 
-    void Update()
+    void FixedUpdate()
     {   
         
         if (!isDark) 
         {
-            Vector3 point = new Vector3();
-
-            point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-
-            ray = new Ray2D(transform.position, point - transform.position);
-            lineRenderer.positionCount = 1;
-            lineRenderer.SetPosition(0, transform.position);
-            float remainingLength = maxLength;
-                        
-            Ray2D[] rays = new Ray2D[reflections+1];
-            rays[0] = ray;
-
-            for (int i = 0; i < reflections; i++)
-            {
-                hit = Physics2D.Raycast(ray.origin, ray.direction, remainingLength);
-                if(hit.collider != null)
-                {   
-                    lineRenderer.positionCount += 1;
-                    lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
-                    remainingLength -= Vector2.Distance(ray.origin, hit.point);
-                    Vector2 newDirection = Vector2.Reflect(ray.direction, hit.normal);
-                    ray = new Ray2D(hit.point, newDirection);
-                    rays[i+1] = ray;
-                    Debug.Log(hit.normal);
-                }
-                else
-                {
-                    lineRenderer.positionCount += 1;
-                    lineRenderer.SetPosition(lineRenderer.positionCount - 1, ray.origin + ray.direction * remainingLength);
-                    break;
-                }
-
-            }
-
-            Vector3[] positions = new Vector3[lineRenderer.positionCount];
-            lineRenderer.GetPositions(positions);
-            //Debug.Log("pos " + string.Join(", ", positions));
-            //Debug.Log("rays " + string.Join(" ||| ", rays));
+            DrawTrajectory();
         }
 
         if (Input.GetMouseButtonDown(0)) 
@@ -115,6 +78,15 @@ public class GunController : MonoBehaviour
                 use get positions of drawline to make directions and path of clone
 
                 when organizing code, make isDark public on some controller and use that
+
+                TODO:
+                level design
+                github repo
+                readme
+                reorganize code
+                curves instead of lines
+                enemies
+                obstacles
             */
 
         if (isDark) 
@@ -148,5 +120,35 @@ public class GunController : MonoBehaviour
         }
 
 
+    }
+
+    void DrawTrajectory()
+    {
+        Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+
+        ray = new Ray2D(transform.position, point);
+        Debug.Log(ray);
+        lineRenderer.positionCount = 1;
+        lineRenderer.SetPosition(0, transform.position);
+        float remainingLength = maxLength;
+
+        for (int i = 0; i < reflections; i++)
+        {
+            hit = Physics2D.Raycast(ray.origin, ray.direction, remainingLength);
+            if (hit)
+            {
+                lineRenderer.positionCount += 1;
+                lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
+                remainingLength -= Vector2.Distance(ray.origin, hit.point);
+                Vector2 newDirection = Vector2.Reflect(ray.direction, hit.normal);
+                ray = new Ray2D(hit.point, newDirection);
+            }
+            else
+            {
+                lineRenderer.positionCount += 1;
+                lineRenderer.SetPosition(lineRenderer.positionCount - 1, ray.origin + ray.direction * remainingLength);
+                break;
+            }
+        }
     }
 }
