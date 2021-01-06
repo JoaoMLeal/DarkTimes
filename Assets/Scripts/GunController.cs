@@ -22,41 +22,34 @@ public class GunController : MonoBehaviour
 
 
     [SerializeField]
-    public GameObject darkPlayer;
+    public GameObject darkSelf;
     private bool isDark;
-    private Vector3 initialPosition;
-    private float speed;
-    private int positions;
 
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        darkPlayer.SetActive(false);
-        initialPosition = transform.position;
         isDark = false;
-        speed = 3;
     }
 
-    void FixedUpdate()
-    {   
-        
-        if (!isDark) 
+    void Update()
+    {
+
+        if (!isDark)
         {
             DrawTrajectory();
         }
 
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0))
         {
             transform.position = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
 
-            if (isDark) 
+            if (isDark)
             {
                 float temp = lightWall.position.z;
                 lightWall.position = new Vector3(lightWall.position.x, lightWall.position.y, darkWall.position.z);
                 darkWall.position = new Vector3(darkWall.position.x, darkWall.position.y, temp);
                 isDark = false;
 
-                darkPlayer.SetActive(false);
             }
             else
             {
@@ -65,69 +58,21 @@ public class GunController : MonoBehaviour
                 darkWall.position = new Vector3(darkWall.position.x, darkWall.position.y, temp);
                 isDark = true;
 
-                darkPlayer.SetActive(true);
-                darkPlayer.transform.position = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
-                positions = lineRenderer.positionCount - 1;
-
-                
+                Vector3[] points = new Vector3[lineRenderer.positionCount];
+                lineRenderer.GetPositions(points);
+                CreateDarkSelf(points);
             }
         }
-                    // READ THIS: EPIPHANY
-            /*
-                use last getposition to teleport
-                use get positions of drawline to make directions and path of clone
-
-                when organizing code, make isDark public on some controller and use that
-
-                TODO:
-                level design
-                github repo
-                readme
-                reorganize code
-                curves instead of lines
-                enemies
-                obstacles
-            */
-
-        if (isDark) 
-        {   
-            Rigidbody2D darkRigidBody = darkPlayer.GetComponent<Rigidbody2D>();
-            darkRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-            //Vector3 pos1 = lineRenderer.GetPosition(positions);
-            Vector3 pos1 = darkPlayer.transform.position;
-            Vector3 pos2 = lineRenderer.GetPosition(positions - 1);
-            if (pos1 == pos2) 
-            {
-                positions--;
-                pos2 = lineRenderer.GetPosition(positions - 1);
-            }
-            Vector2 direction = new Vector2(pos2.x - pos1.x, pos2.y - pos1.y);
-            Vector2 move = new Vector2(direction.x * speed, direction.y * speed);
-
-            darkRigidBody.velocity = move;
-
-            if (initialPosition == darkPlayer.transform.position) 
-            {
-                darkRigidBody.velocity = new Vector2(0,0);
-            }
-
-            if (positions == 0)
-            {   
-                darkPlayer.SetActive(false);
-                isDark = false;
-            }
-        }
-
-
     }
 
+    /// <summary>
+    /// Draws a line from the player position to the cursor position, and reflects that line on objects
+    /// </summary>
     void DrawTrajectory()
     {
         Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
 
         ray = new Ray2D(transform.position, point);
-        Debug.Log(ray);
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position);
         float remainingLength = maxLength;
@@ -151,4 +96,15 @@ public class GunController : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Instantiates the dark self at the player position
+    /// </summary>
+    void CreateDarkSelf(Vector3[] points)
+    {
+        GameObject dakrS = Instantiate(darkSelf, transform.position, Quaternion.identity);
+        dakrS.GetComponent<DarkSelfController>().points = points;
+    }
+
+
 }
