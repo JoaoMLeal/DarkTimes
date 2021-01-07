@@ -31,7 +31,7 @@ public class DarkSelfController : MonoBehaviour
         if (Vector3.Distance(pos1, pos2) < alpha)
         {
             current--;
-            if (current >= 0)
+            if (current > 0)
                 pos2 = points[current - 1];
         }
 
