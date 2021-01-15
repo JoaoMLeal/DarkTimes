@@ -6,6 +6,9 @@ TagManager:
   tags:
   - FloorTile
   - PlatformTile
+  - DoorClosed
+  - DoorOpen
+  - Mirror
   layers:
   - Default
   - TransparentFX

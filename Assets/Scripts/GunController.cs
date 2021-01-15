@@ -13,7 +13,7 @@ public class GunController : MonoBehaviour
     public Transform darkWall;
 
     public int reflections = 5;
-    public float maxLength = 5f;
+    public float maxLength = 50f;
 
     private LineRenderer lineRenderer;
     private Ray2D ray;
@@ -47,10 +47,10 @@ public class GunController : MonoBehaviour
             initialPos = transform.position;
             transform.position = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
 
-            float temp = lightWall.position.z;
+            /*float temp = lightWall.position.z;
             lightWall.position = new Vector3(lightWall.position.x, lightWall.position.y, darkWall.position.z);
             darkWall.position = new Vector3(darkWall.position.x, darkWall.position.y, temp);
-            isDark = true;
+            isDark = true;*/
 
             Vector3[] points = new Vector3[lineRenderer.positionCount];
             lineRenderer.GetPositions(points);
@@ -59,10 +59,10 @@ public class GunController : MonoBehaviour
 
         if (darkS != null && Vector3.Distance(darkS.transform.position, initialPos) < 0.1f)
         {
-            float temp = lightWall.position.z;
+            /*float temp = lightWall.position.z;
             lightWall.position = new Vector3(lightWall.position.x, lightWall.position.y, darkWall.position.z);
             darkWall.position = new Vector3(darkWall.position.x, darkWall.position.y, temp);
-            isDark = false;
+            isDark = false;*/
         }
     }
 
@@ -80,9 +80,11 @@ public class GunController : MonoBehaviour
 
         for (int i = 0; i < reflections; i++)
         {
-            hit = Physics2D.Raycast(ray.origin, ray.direction, remainingLength);
+            hit = Physics2D.Raycast(ray.origin, ray.direction, remainingLength, ~(1 << 2));
             if (hit)
             {
+                if (hit.collider.CompareTag("Mirror"))
+                    remainingLength += 10f;
                 lineRenderer.positionCount += 1;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
                 remainingLength -= Vector2.Distance(ray.origin, hit.point);

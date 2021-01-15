@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class DarkSelfController : MonoBehaviour
 {
@@ -43,6 +45,15 @@ public class DarkSelfController : MonoBehaviour
         if (current == 0)
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("DoorClosed"))
+        {
+            Debug.Log("Game Over");
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }
