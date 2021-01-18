@@ -5,6 +5,23 @@ using UnityEngine.Tilemaps;
 
 public class DimensionManager : MonoBehaviour
 {
+
+    private static DimensionManager _instance;
+    public static DimensionManager instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
+
     private bool isDark;
 
     [SerializeField]
@@ -12,6 +29,10 @@ public class DimensionManager : MonoBehaviour
     [SerializeField]
     public GameObject darkBackground;
 
+    public bool IsDark()
+    {
+        return isDark;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +46,8 @@ public class DimensionManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             SwitchLayers();
+            if (!isDark)
+                isDark = true;
         }
     }
 

@@ -9,6 +9,7 @@ TagManager:
   - DoorClosed
   - DoorOpen
   - Mirror
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Background
   - 
   - 
   - 
@@ -43,6 +44,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Foreground
+    uniqueID: 3155970421
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

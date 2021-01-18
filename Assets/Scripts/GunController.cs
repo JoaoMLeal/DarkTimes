@@ -7,37 +7,29 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
 
-    [SerializeField]
-    public Transform lightWall;
-    [SerializeField]
-    public Transform darkWall;
-
     public int reflections = 5;
     public float maxLength = 50f;
 
     private LineRenderer lineRenderer;
     private Ray2D ray;
     private RaycastHit2D hit;
-    private Vector3 direction;
 
 
     [SerializeField]
     public GameObject darkSelf;
     private GameObject darkS;
-    private bool isDark;
     private Vector3 initialPos;
 
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        isDark = false;
         darkS = null;
     }
 
     void Update()
     {
 
-        if (!isDark)
+        if (DimensionManager.instance.IsDark())
         {
             DrawTrajectory();
         }

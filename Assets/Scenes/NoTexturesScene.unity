@@ -237,32 +237,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7045735035584246223}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &536073445
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 536073442}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &617695482
 GameObject:
   m_ObjectHideFlags: 0
@@ -49330,6 +49304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1171081211}
   - component: {fileID: 1171081212}
+  - component: {fileID: 1171081213}
   m_Layer: 0
   m_Name: ManagerObject
   m_TagString: Untagged
@@ -49365,6 +49340,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightBackground: {fileID: 1007242039}
   darkBackground: {fileID: 2048450722}
+--- !u!114 &1171081213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171081210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5891092e6d16f748b5df1eb082349f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2028987234
 GameObject:
   m_ObjectHideFlags: 0
@@ -95105,6 +95092,16 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 536073442}
+    - target: {fileID: 1099476314278235169, guid: 4f654d52ce4ae494597b0f14f405caa3,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099476314278235169, guid: 4f654d52ce4ae494597b0f14f405caa3,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1099476314278235170, guid: 4f654d52ce4ae494597b0f14f405caa3,
         type: 3}
       propertyPath: m_RootOrder
@@ -95174,52 +95171,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1544683424446921964, guid: bc4ca503958b36b4eaa86025e5ef7cad,
-        type: 3}
-      propertyPath: darkSelf
-      value: 
-      objectReference: {fileID: 8051687428277675586, guid: 572cca0067ada634da767de8936bde4d,
-        type: 3}
-    - target: {fileID: 1544683424446921964, guid: bc4ca503958b36b4eaa86025e5ef7cad,
-        type: 3}
-      propertyPath: maxLength
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 1544683424446921965, guid: bc4ca503958b36b4eaa86025e5ef7cad,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1544683424446921965, guid: bc4ca503958b36b4eaa86025e5ef7cad,
+    - target: {fileID: 1544683424446921971, guid: bc4ca503958b36b4eaa86025e5ef7cad,
         type: 3}
-      propertyPath: m_TagString
-      value: Player
+      propertyPath: m_Parameters.textureMode
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1544683424446921969, guid: bc4ca503958b36b4eaa86025e5ef7cad,
+    - target: {fileID: 1544683424446921971, guid: bc4ca503958b36b4eaa86025e5ef7cad,
         type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544683424446921969, guid: bc4ca503958b36b4eaa86025e5ef7cad,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544683424446921969, guid: bc4ca503958b36b4eaa86025e5ef7cad,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544683424446921969, guid: bc4ca503958b36b4eaa86025e5ef7cad,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544683424446921970, guid: bc4ca503958b36b4eaa86025e5ef7cad,
-        type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 99e4007fd1c05b24e811cfd3a3b78733, type: 2}
     - target: {fileID: 1544683424446921974, guid: bc4ca503958b36b4eaa86025e5ef7cad,
         type: 3}
       propertyPath: m_RootOrder
@@ -95360,16 +95326,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7045735035264443691, guid: 2392546712a259d488a3f085669e4a87,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7045735035264443691, guid: 2392546712a259d488a3f085669e4a87,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7045735035264443691, guid: 2392546712a259d488a3f085669e4a87,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.5
       objectReference: {fileID: 0}
@@ -95422,16 +95378,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door
-      objectReference: {fileID: 0}
-    - target: {fileID: 7045735035264443693, guid: 2392546712a259d488a3f085669e4a87,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7045735035264443693, guid: 2392546712a259d488a3f085669e4a87,
-        type: 3}
-      propertyPath: m_TagString
-      value: DoorClosed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2392546712a259d488a3f085669e4a87, type: 3}

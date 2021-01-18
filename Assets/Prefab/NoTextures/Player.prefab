@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1544683424446921964}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be844943260dd940a3a4306463d3593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
 --- !u!120 &1544683424446921971
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 99e4007fd1c05b24e811cfd3a3b78733, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,7 +184,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -258,5 +258,6 @@ MonoBehaviour:
   lightWall: {fileID: 0}
   darkWall: {fileID: 0}
   reflections: 5
-  maxLength: 30
-  darkSelf: {fileID: 0}
+  maxLength: 25
+  darkSelf: {fileID: 8051687428277675586, guid: 572cca0067ada634da767de8936bde4d,
+    type: 3}
