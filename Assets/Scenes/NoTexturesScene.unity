@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &88593061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1544683424446921965, guid: bc4ca503958b36b4eaa86025e5ef7cad,
+    type: 3}
+  m_PrefabInstance: {fileID: 1544683423516882979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &255521465
 GameObject:
   m_ObjectHideFlags: 0
@@ -49338,6 +49344,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddcc2aded8055e4ea6bdf16cf7b2c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 88593061}
+  darkPlayerPrefab: {fileID: 8051687428277675586, guid: 572cca0067ada634da767de8936bde4d,
+    type: 3}
   lightBackground: {fileID: 1007242039}
   darkBackground: {fileID: 2048450722}
 --- !u!114 &1171081213
@@ -95053,7 +95062,7 @@ Tilemap:
       e33: 1
   m_TileColorArray:
   - m_RefCount: 5060
-    m_Data: {r: 0.1254902, g: 0, b: 0.1254902, a: 1}
+    m_Data: {r: 0.5019608, g: 0, b: 0.5019608, a: 1}
   - m_RefCount: 0
     m_Data: {r: 0, g: 0, b: 0, a: 0}
   m_TileObjectToInstantiateArray: []
@@ -95101,6 +95110,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099476314278235169, guid: 4f654d52ce4ae494597b0f14f405caa3,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1099476314278235170, guid: 4f654d52ce4ae494597b0f14f405caa3,
         type: 3}

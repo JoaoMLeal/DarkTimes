@@ -15,6 +15,8 @@ public class DarkSelfController : MonoBehaviour
     private int current;
     private float alpha;
 
+    public bool finished;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class DarkSelfController : MonoBehaviour
         speed = 2;
         current = points.Length - 1;
         alpha = 0.1f;
+        finished = false;
     }
 
     // Update is called once per frame
@@ -44,7 +47,7 @@ public class DarkSelfController : MonoBehaviour
 
         if (current == 0)
         {
-            Destroy(this.gameObject);
+            finished = true;
         }
     }
 

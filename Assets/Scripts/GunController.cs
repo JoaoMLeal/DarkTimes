@@ -14,47 +14,17 @@ public class GunController : MonoBehaviour
     private Ray2D ray;
     private RaycastHit2D hit;
 
-
-    [SerializeField]
-    public GameObject darkSelf;
-    private GameObject darkS;
-    private Vector3 initialPos;
-
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        darkS = null;
     }
 
     void Update()
     {
 
-        if (DimensionManager.instance.IsDark())
+        if (!DimensionManager.instance.IsDark())
         {
             DrawTrajectory();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            initialPos = transform.position;
-            transform.position = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
-
-            /*float temp = lightWall.position.z;
-            lightWall.position = new Vector3(lightWall.position.x, lightWall.position.y, darkWall.position.z);
-            darkWall.position = new Vector3(darkWall.position.x, darkWall.position.y, temp);
-            isDark = true;*/
-
-            Vector3[] points = new Vector3[lineRenderer.positionCount];
-            lineRenderer.GetPositions(points);
-            CreateDarkSelf(points);
-        }
-
-        if (darkS != null && Vector3.Distance(darkS.transform.position, initialPos) < 0.1f)
-        {
-            /*float temp = lightWall.position.z;
-            lightWall.position = new Vector3(lightWall.position.x, lightWall.position.y, darkWall.position.z);
-            darkWall.position = new Vector3(darkWall.position.x, darkWall.position.y, temp);
-            isDark = false;*/
         }
     }
 
@@ -91,15 +61,5 @@ public class GunController : MonoBehaviour
             }
         }
     }
-
-    /// <summary>
-    /// Instantiates the dark self at the player position
-    /// </summary>
-    void CreateDarkSelf(Vector3[] points)
-    {
-        darkS = Instantiate(darkSelf, transform.position, Quaternion.identity);
-        darkS.GetComponent<DarkSelfController>().points = points;
-    }
-
 
 }
