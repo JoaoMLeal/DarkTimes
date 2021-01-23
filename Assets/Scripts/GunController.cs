@@ -46,7 +46,7 @@ public class GunController : MonoBehaviour
             if (hit)
             {
                 if (hit.collider.CompareTag("Mirror"))
-                    remainingLength += 10f;
+                    remainingLength += 15f;
                 lineRenderer.positionCount += 1;
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
                 remainingLength -= Vector2.Distance(ray.origin, hit.point);

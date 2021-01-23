@@ -24,7 +24,6 @@ public class ButtonController : MonoBehaviour
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("button");
             door.tag = "DoorOpen";
             door.GetComponent<SpriteRenderer>().color = Color.yellow;
         }

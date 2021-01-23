@@ -24,26 +24,31 @@ public class DarkSelfController : MonoBehaviour
         rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         speed = 2;
         current = points.Length - 1;
-        alpha = 0.1f;
+        alpha = 0.2f;
         finished = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 pos1 = transform.position;
         Vector3 pos2 = points[current - 1];
+
+        Vector2 direction = new Vector2(pos2.x - pos1.x, pos2.y - pos1.y);
+        //Vector2 move = new Vector2(direction.x * speed, direction.y * speed);
+        //rigidBody.velocity = move;
+        rigidBody.position = rigidBody.position + direction * speed * Time.fixedDeltaTime;
+
         if (Vector3.Distance(pos1, pos2) < alpha)
         {
             current--;
             if (current > 0)
                 pos2 = points[current - 1];
+            direction = new Vector2(pos2.x - pos1.x, pos2.y - pos1.y).normalized;
+            //move = new Vector2(direction.x * speed, direction.y * speed);
+            //rigidBody.velocity = move;
+            rigidBody.position = rigidBody.position + direction * speed * Time.fixedDeltaTime;
         }
-
-        Vector2 direction = new Vector2(pos2.x - pos1.x, pos2.y - pos1.y);
-        Vector2 move = new Vector2(direction.x * speed, direction.y * speed);
-
-        rigidBody.velocity = move;
 
         if (current == 0)
         {
@@ -55,7 +60,6 @@ public class DarkSelfController : MonoBehaviour
     {
         if (other.CompareTag("DoorClosed"))
         {
-            Debug.Log("Game Over");
             SceneManager.LoadScene("GameOverScene");
         }
     }
