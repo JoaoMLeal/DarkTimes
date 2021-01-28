@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         rigidBody.velocity = move;
 
 
-        if (facingLeft && movement > 0)
+        /*if (facingLeft && movement > 0)
         {
             transform.localScale = new Vector3(-transform.localScale.x, -transform.localScale.y, -transform.localScale.z);
             facingLeft = false;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = new Vector3(-transform.localScale.x, -transform.localScale.y, -transform.localScale.z);
             facingLeft = true;
-        }
+        }*/
     }
 
     private bool IsGrounded()

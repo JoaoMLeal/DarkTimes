@@ -11,6 +11,7 @@ TagManager:
   - Mirror
   - Door
   - Button
+  - DarkPlayer
   layers:
   - Default
   - TransparentFX
