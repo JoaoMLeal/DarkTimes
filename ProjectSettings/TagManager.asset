@@ -12,6 +12,7 @@ TagManager:
   - Door
   - Button
   - DarkPlayer
+  - Bolder
   layers:
   - Default
   - TransparentFX

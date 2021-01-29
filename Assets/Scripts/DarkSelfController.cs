@@ -58,7 +58,7 @@ public class DarkSelfController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("DoorClosed"))
+        if (other.CompareTag("DoorClosed") || other.CompareTag("Bolder"))
         {
             SceneManager.LoadScene("GameOverScene");
         }

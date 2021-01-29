@@ -12,7 +12,7 @@ public class BolderController : MonoBehaviour
     [SerializeField]
     private float finalY;
 
-    private float speed = 20f; 
+    public float Speed { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,7 @@ public class BolderController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         startPoint = transform.position;
         finalPoint = new Vector3(transform.position.x, finalY, 0);
+        Speed = 20f;
     }
 
     // Update is called once per frame
@@ -33,19 +34,10 @@ public class BolderController : MonoBehaviour
 
     void MoveBolder(Vector3 start, Vector3 final)
     {
-        float step = speed * Time.deltaTime; // calculate distance to move
+        float step = Speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, final, step);
 
-        // Check if the position of the cube and sphere are approximately equal.
-        if (Vector3.Distance(transform.position, final) < 0.001f)
-        {
-            // Swap the position of the cylinder.
+        if (Vector3.Distance(transform.position, final) < Mathf.Epsilon)
             transform.position = start;
-        }
-    }
-
-    public void SetSpeed(float s)
-    {
-        speed = s;
     }
 }
