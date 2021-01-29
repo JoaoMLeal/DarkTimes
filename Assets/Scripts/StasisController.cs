@@ -32,7 +32,7 @@ public class StasisController : MonoBehaviour
             BolderController[] controllers = GetBolderControllers();
             oldSpeed = controllers[0].Speed;
             foreach (BolderController controller in controllers)
-                controller.Speed = 0f;
+                controller.Speed = 2f;
             active = true;
         }
     }
