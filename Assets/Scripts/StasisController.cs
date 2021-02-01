@@ -6,12 +6,14 @@ public class StasisController : MonoBehaviour
 {
 
     private bool active = false;
-    private float oldSpeed;
+
+    [SerializeField]
+    private float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,8 +22,8 @@ public class StasisController : MonoBehaviour
         if (active && !DimensionManager.instance.IsDark())
         {
             active = false;
-            foreach (BolderController controller in GetBolderControllers())
-                controller.Speed = oldSpeed;
+            foreach (BolderController controller in GameManager.instance.GetBolderControllers())
+                controller.Speed = GameManager.instance.BolderSpeed();
         }
     }
 
@@ -29,20 +31,10 @@ public class StasisController : MonoBehaviour
     {
         if (collision.CompareTag("DarkPlayer"))
         {
-            BolderController[] controllers = GetBolderControllers();
-            oldSpeed = controllers[0].Speed;
+            BolderController[] controllers = GameManager.instance.GetBolderControllers();
             foreach (BolderController controller in controllers)
-                controller.Speed = 2f;
+                controller.Speed = speed;
             active = true;
         }
-    }
-
-    private BolderController[] GetBolderControllers()
-    {
-        GameObject[] bolders = GameObject.FindGameObjectsWithTag("Bolder");
-        BolderController[] controllers = new BolderController[bolders.Length];
-        for (int i = 0; i < controllers.Length; i++)
-            controllers[i] = bolders[i].GetComponent<BolderController>();
-        return controllers;
     }
 }
