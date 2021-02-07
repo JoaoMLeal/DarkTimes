@@ -22,6 +22,7 @@ public class DimensionManager : MonoBehaviour
     [SerializeField]
     public GameObject darkBackground;
 
+    public AudioSource ShootSound;
 
     private void Awake()
     {
@@ -77,6 +78,7 @@ public class DimensionManager : MonoBehaviour
 
     void TeleportPlayer()
     {
+        ShootSound.Play();
         LineRenderer lineRenderer = player.GetComponent<LineRenderer>();
         player.transform.position = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
 

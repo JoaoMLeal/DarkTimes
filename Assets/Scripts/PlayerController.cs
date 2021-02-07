@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip JumpSound;
+    public AudioClip WalkSound;
+
+    public AudioSource AudioSource;
+
+
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -29,9 +35,18 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         movement = Input.GetAxis("Horizontal");
-        
+
+        if (movement != 0 && !AudioSource.isPlaying)
+        {
+            AudioSource.clip = WalkSound;
+            AudioSource.Play();
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
+            AudioSource.clip = JumpSound;
+            AudioSource.Play();
+
             //velocityY = jump;
             Vector2 j = new Vector2(rigidBody.velocity.x, jump);
             rigidBody.velocity = j;
@@ -40,7 +55,7 @@ public class PlayerController : MonoBehaviour
         Vector2 move = new Vector2(movement * speed, rigidBody.velocity.y);
         rigidBody.velocity = move;
 
-
+        
         if (facingLeft && movement > 0)
         {
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);

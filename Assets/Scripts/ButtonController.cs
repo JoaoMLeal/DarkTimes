@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ButtonController : MonoBehaviour
 {
+    public AudioSource DoorOpenSound;
 
     [SerializeField]
     public GameObject door1;
@@ -29,6 +30,7 @@ public class ButtonController : MonoBehaviour
     {
         if (onTrigger && Input.GetKeyDown(KeyCode.E))
         {
+            DoorOpenSound.Play();
             if (door1.CompareTag("DoorClosed"))
                 OpenDoor(door1);
             else
