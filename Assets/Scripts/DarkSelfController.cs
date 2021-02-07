@@ -11,7 +11,7 @@ public class DarkSelfController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
 
-    private int speed;
+    public float speed;
     private int current;
     private float alpha;
 
@@ -22,7 +22,7 @@ public class DarkSelfController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        speed = 2;
+        speed = 2f;
         current = points.Length - 1;
         alpha = 0.2f;
         finished = false;
@@ -56,11 +56,10 @@ public class DarkSelfController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("DoorClosed") || other.CompareTag("Bolder"))
-        {
-            SceneManager.LoadScene("GameOverScene");
-        }
+        if (other.CompareTag("Bolder") || other.CompareTag("DoorClosed") || other.CompareTag("Lava"))
+            GameManager.instance.GameOver();
+            //SceneManager.LoadScene("NoTexturesScene");
     }
 }

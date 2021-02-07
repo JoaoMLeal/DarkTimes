@@ -6,29 +6,64 @@ public class ButtonController : MonoBehaviour
 {
 
     [SerializeField]
-    public GameObject door;
+    public GameObject door1;
+
+    [SerializeField]
+    public GameObject door2;
 
     [SerializeField]
     private Sprite openDoor;
+    [SerializeField]
+    private Sprite closedDoor;
+
+    private bool onTrigger;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        onTrigger = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (onTrigger && Input.GetKeyDown(KeyCode.E))
+        {
+            if (door1.CompareTag("DoorClosed"))
+                OpenDoor(door1);
+            else
+                CloseDoor(door1);
 
+            if (door2.CompareTag("DoorClosed"))
+                OpenDoor(door2);
+            else
+                CloseDoor(door2);
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
-        {
-            door.tag = "DoorOpen";
-            door.GetComponent<SpriteRenderer>().sprite = openDoor;
-        }
+        if (other.CompareTag("Player"))
+            onTrigger = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+            onTrigger = false;
+    }
+
+    private void CloseDoor(GameObject door)
+    {
+        door.tag = "DoorClosed";
+        door.GetComponent<SpriteRenderer>().sprite = closedDoor;
+        door.GetComponent<Collider2D>().enabled = true;
+    }
+
+    private void OpenDoor(GameObject door)
+    {
+        door.tag = "DoorOpen";
+        door.GetComponent<SpriteRenderer>().sprite = openDoor;
+        door.GetComponent<Collider2D>().enabled = false;
     }
 }

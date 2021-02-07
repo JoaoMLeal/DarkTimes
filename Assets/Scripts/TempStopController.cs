@@ -9,11 +9,14 @@ public class TempStopController : MonoBehaviour
     private float stopTime;
 
     private float timeLeft;
+    private float oldSpeed;
+    private GameObject darkPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        oldSpeed = 0f;
+        darkPlayer = null;
     }
 
     // Update is called once per frame
@@ -26,6 +29,8 @@ public class TempStopController : MonoBehaviour
             {
                 foreach (BolderController controller in GameManager.instance.GetBolderControllers())
                     controller.Speed = GameManager.instance.BolderSpeed();
+
+                darkPlayer.GetComponent<DarkSelfController>().speed = oldSpeed;
                 timeLeft = 0;
             }
         }
@@ -39,6 +44,10 @@ public class TempStopController : MonoBehaviour
             BolderController[] controllers = GameManager.instance.GetBolderControllers();
             foreach (BolderController controller in controllers)
                 controller.Speed = 0f;
+
+            darkPlayer = collision.gameObject;
+            oldSpeed = darkPlayer.GetComponent<DarkSelfController>().speed;
+            darkPlayer.GetComponent<DarkSelfController>().speed = 0f;  
         }
     }
 }

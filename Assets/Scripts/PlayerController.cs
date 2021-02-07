@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    public float speed;
-    public float jump;
+    private float speed;
+    [SerializeField]
+    private float jump;
     
     private float movement;
     private bool facingLeft;
@@ -21,8 +22,6 @@ public class PlayerController : MonoBehaviour
         rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         boxCollider = GetComponent<BoxCollider2D>();
 
-        speed = 15f;
-        jump = 25f;
         facingLeft = true;
     }
 
@@ -59,5 +58,11 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, .1f);
         return raycastHit.collider != null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bolder") || other.CompareTag("Lava"))
+            GameManager.instance.GameOver();
     }
 }
