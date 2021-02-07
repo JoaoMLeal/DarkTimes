@@ -56,6 +56,7 @@ public class DimensionManager : MonoBehaviour
             player.GetComponent<LineRenderer>().enabled = false;
             SwitchLayers();
             TeleportPlayer();
+            Camera.main.orthographicSize = 30;
         }
         else if (darkPlayer != null && darkPlayer.GetComponent<DarkSelfController>().finished)
         {
@@ -63,6 +64,7 @@ public class DimensionManager : MonoBehaviour
             isDark = false;
             Destroy(darkPlayer);
             SwitchLayers();
+            Camera.main.orthographicSize = 20;
         }
     }
 

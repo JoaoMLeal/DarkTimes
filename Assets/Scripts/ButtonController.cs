@@ -8,6 +8,9 @@ public class ButtonController : MonoBehaviour
     [SerializeField]
     public GameObject door;
 
+    [SerializeField]
+    private Sprite openDoor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +28,7 @@ public class ButtonController : MonoBehaviour
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
         {
             door.tag = "DoorOpen";
-            door.GetComponent<SpriteRenderer>().color = Color.yellow;
+            door.GetComponent<SpriteRenderer>().sprite = openDoor;
         }
     }
 }

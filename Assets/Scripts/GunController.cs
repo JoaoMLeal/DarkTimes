@@ -24,6 +24,8 @@ public class GunController : MonoBehaviour
 
         if (!DimensionManager.instance.IsDark())
         {
+            float width = lineRenderer.startWidth;
+            lineRenderer.material.mainTextureScale = new Vector2(1f / width, 1.0f);
             DrawTrajectory();
         }
     }

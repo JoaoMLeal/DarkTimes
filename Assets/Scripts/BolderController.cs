@@ -7,7 +7,7 @@ public class BolderController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private Vector3 startPoint;
-    private Vector3 finalPoint;
+    private Vector3 endPoint;
 
     [SerializeField]
     private float finalY;
@@ -19,7 +19,7 @@ public class BolderController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         startPoint = transform.position;
-        finalPoint = new Vector3(transform.position.x, finalY, 0);
+        endPoint = new Vector3(transform.position.x, finalY, 0);
         Speed = 20f;
     }
 
@@ -27,17 +27,17 @@ public class BolderController : MonoBehaviour
     void Update()
     {
         if (!DimensionManager.instance.IsDark())
-            MoveBolder(startPoint, finalPoint);
+            MoveBolder(startPoint, endPoint);
         else
-            MoveBolder(finalPoint, startPoint);
+            MoveBolder(endPoint, startPoint);
     }
 
-    void MoveBolder(Vector3 start, Vector3 final)
+    void MoveBolder(Vector3 start, Vector3 end)
     {
         float step = Speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, final, step);
+        transform.position = Vector3.MoveTowards(transform.position, end, step);
 
-        if (Vector3.Distance(transform.position, final) < Mathf.Epsilon)
+        if (Vector3.Distance(transform.position, end) < Mathf.Epsilon)
             transform.position = start;
     }
 }

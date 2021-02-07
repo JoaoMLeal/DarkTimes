@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jump;
     
     private float movement;
-    //private bool facingLeft;
+    private bool facingLeft;
 
     private Rigidbody2D rigidBody;
     private BoxCollider2D boxCollider;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
         speed = 15f;
         jump = 25f;
-        //facingLeft = true;
+        facingLeft = true;
     }
 
     // Update is called once per frame
@@ -42,17 +42,17 @@ public class PlayerController : MonoBehaviour
         rigidBody.velocity = move;
 
 
-        /*if (facingLeft && movement > 0)
+        if (facingLeft && movement > 0)
         {
-            transform.localScale = new Vector3(-transform.localScale.x, -transform.localScale.y, -transform.localScale.z);
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             facingLeft = false;
         }
 
         if (!facingLeft && movement < 0)
         {
-            transform.localScale = new Vector3(-transform.localScale.x, -transform.localScale.y, -transform.localScale.z);
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             facingLeft = true;
-        }*/
+        }
     }
 
     private bool IsGrounded()
