@@ -13,9 +13,9 @@ public class MenuController : MonoBehaviour
     
     void Start()
     {
-        PlayButton.onClick.AddListener(PlayGame);
-        ExitButton.onClick.AddListener(ExitGame);
-        InfoButton.onClick.AddListener(AboutGame);
+        PlayButton?.onClick.AddListener(PlayGame);
+        ExitButton?.onClick.AddListener(ExitGame);
+        InfoButton?.onClick.AddListener(AboutGame);
     }
 
     private void PlayGame()
