@@ -60,6 +60,7 @@ public class DarkSelfController : MonoBehaviour
     {
         if (other.CompareTag("Bolder") || other.CompareTag("DoorClosed") || other.CompareTag("Lava"))
             GameManager.instance.GameOver();
+            //DimensionManager.instance.EnableTrajectory();
             //SceneManager.LoadScene("NoTexturesScene");
     }
 }

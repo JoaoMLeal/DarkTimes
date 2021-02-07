@@ -91,4 +91,9 @@ public class DimensionManager : MonoBehaviour
         darkPlayer = Instantiate(darkPlayerPrefab, player.transform.position, Quaternion.identity);
         darkPlayer.GetComponent<DarkSelfController>().points = points;
     }
+
+    public void EnableTrajectory()
+    {
+        player.GetComponent<LineRenderer>().enabled = true;
+    }
 }
